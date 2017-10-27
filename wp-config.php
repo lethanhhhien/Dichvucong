@@ -20,19 +20,22 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'Test');
+$url = parse_url(getenv('DATABASE_URL') ? getenv('DATABASE_URL') : getenv('CLEARDB_DATABASE_URL'));
+
+/** The name of the database for WordPress */
+define('DB_NAME', trim($url['path'], '/'));
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', $url['user']);
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', $url['pass']);
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', $url['host']);
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8mb4');
+define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
@@ -46,14 +49,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         's7;7o_t/^by~eQbN|HyG,>r<3X};XddCevM?l|.ErtiD+33lK0I}]M6Xh[ @wNK]');
-define('SECURE_AUTH_KEY',  '2K^Weoibc<22zm1JAU@3Aje$@<sL Q?=M5>2s$W.m%<4T2Ie3~Avk@XTI0m=]?9?');
-define('LOGGED_IN_KEY',    'CV]wlQ^CG/=v%zN8`_r.^kc4w]zp3;tQjC*+M<G32&0/7XY6H?n>*Y_#%Y+L$B6s');
-define('NONCE_KEY',        '6tQ1aRd5Td(/X@Y46^nL#aG*+I>(-C&h>1]Lvn*l{{;[gL!ZG9.7S~AThy_u4d{W');
-define('AUTH_SALT',        'u4q|4oKG*$L>e$/l!uuxQ?m,7h7oFq-dSNU,@HA?fOc}& /8>7:3J9*J/SOGtQmp');
-define('SECURE_AUTH_SALT', 's(60KvyQFF_b?o#k786Q%Dts:zhg&g~1n K]++C)cf2pRTFzwqNDO`>/.C.Sq,lF');
-define('LOGGED_IN_SALT',   'IPz/N**><Rl}BqXv$Zm4O%TOJvni3>Qwg5*g1>03sBA-cN`h;*TrIULdz>`|y%ZN');
-define('NONCE_SALT',       '&iWknZ%sFz@RxRs8k%6r>`A(/rGK*Owx5*uOpqEvGd?,AlIMFg@&N<1h5GaMKW!E');
+ define('AUTH_KEY',         getenv('AUTH_KEY'));
+ define('SECURE_AUTH_KEY',  getenv('SECURE_AUTH_KEY'));
+ define('LOGGED_IN_KEY',    getenv('LOGGED_IN_KEY'));
+ define('NONCE_KEY',        getenv('NONCE_KEY'));
+ define('AUTH_SALT',        getenv('AUTH_SALT'));
+ define('SECURE_AUTH_SALT', getenv('SECURE_AUTH_SALT'));
+ define('LOGGED_IN_SALT',   getenv('LOGGED_IN_SALT'));
+ define('NONCE_SALT',       getenv('NONCE_SALT'));
 
 /**#@-*/
 
